@@ -1,5 +1,5 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
-import { computePhash, isEquel } from '../sameImage/utils';
+import { computePhash, getPhashFromServer, isEquel } from '../sameImage/utils';
 
 
 const DB = 'certiview';
@@ -21,7 +21,7 @@ export const upload = async (image: File, mongoUri: string) => {
     const collection = db.collection(COLLECTION);
 
     const buffer = Buffer.from(await image.arrayBuffer());
-    const phashValue = await computePhash(buffer);
+    const phashValue = await getPhashFromServer(image);
 
     const insertResult = await collection.insertOne({
         imageBuffer: buffer,
