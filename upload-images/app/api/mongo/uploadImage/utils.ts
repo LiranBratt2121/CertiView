@@ -1,5 +1,5 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
-import { computePhash, getPhashFromServer, isEquel } from '../sameImage/utils';
+import { getPhashFromServer, isEquel } from '../sameImage/utils';
 
 
 const DB = 'certiview';
@@ -45,8 +45,7 @@ export const findSimilarImage = async (
     const db = client.db(DB);
     const collection = db.collection(COLLECTION);
 
-    const buffer = Buffer.from(await image.arrayBuffer());
-    const newPhash = await computePhash(buffer);
+    const newPhash = await getPhashFromServer(image);
 
     const docs = await collection
         .find({}, { projection: { _id: 1, phash: 1 } })

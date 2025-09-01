@@ -2,24 +2,7 @@ import { writeFile, readFile, unlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { randomUUID } from 'node:crypto';
 import { join } from 'node:path';
-import phash from 'sharp-phash';
 
-
-const saveBufferToTempFile = async (buffer: Buffer) => {
-    const tempFilePath = join(tmpdir(), `temp_file_${randomUUID()}.bin`);
-    await writeFile(tempFilePath, buffer);
-
-    return tempFilePath;
-}
-
-export const computePhash = async (buffer: Buffer): Promise<string> => {
-    const path = await saveBufferToTempFile(buffer);
-    const img = await readFile(path);
-    const phashImg = await phash(img);
-    await unlink(path);
-
-    return phashImg;
-};
 
 export const getPhashFromServer = async (file: File) => {
     const formData = new FormData();
