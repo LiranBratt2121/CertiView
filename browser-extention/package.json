@@ -1,0 +1,15 @@
+{
+  "name": "image-button-injector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild content.js --bundle --outfile=dist/content.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.19.11"
+  }
+}
