@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { MongoClient } from "mongodb";
-import { findSimilarImage } from "../utils";
+import { findSimilarImage } from "../uploadImage/utils";
 
 export async function POST(request: Request) {
   try {

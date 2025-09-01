@@ -1,5 +1,5 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
-import { computePhash, isEquel } from './sameImage/utils';
+import { computePhash, isEquel } from '../sameImage/utils';
 
 
 const DB = 'certiview';

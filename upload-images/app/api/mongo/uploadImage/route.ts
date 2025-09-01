@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { upload } from "../utils";
+import { upload } from "./utils";
 
 export async function POST(request: Request) {
     const formData = await request.formData();
