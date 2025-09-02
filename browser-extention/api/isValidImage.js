@@ -10,15 +10,17 @@ export async function isValidImage(img) {
     const mimeString = base64.split(",")[0].match(/:(.*?);/)[1];
     const ab = new ArrayBuffer(byteString.length);
     const ia = new Uint8Array(ab);
+
     for (let i = 0; i < byteString.length; i++) {
       ia[i] = byteString.charCodeAt(i);
     }
+    
     const blob = new Blob([ab], { type: mimeString });
 
     const formData = new FormData();
     formData.append("image", blob, "image.png");
 
-    const response = await fetch("http://10.0.0.19:3000/api/mongo/sameImage", {
+    const response = await fetch("https://certi-view.vercel.app/api/mongo/sameImage", {
       method: "POST",
       body: formData,
     });
